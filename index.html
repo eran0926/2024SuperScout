@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>superScout System</title>
+        <style>
+            body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                text-align: center;
+                align-items: center;
+                display: block;
+            }
+        </style>
+    </head>
+    <body>
+        <div style="margin-top: 20px;">
+            <label>Match</label>
+            <input type="number" id="match" min="1"/>
+        </div>
+        <div>
+            <label>Scouter</label>
+            <input type="text" id="scouter" />
+        </div>
+        <div>
+            <script>
+                let amplify = 0;
+                function updateAmplify(num) {
+                    amplify += num;
+                    if (amplify < 0) {
+                        amplify = 0;
+                    }
+                    document.getElementById("amplifyValue").textContent = amplify;
+                }
+            </script>
+            <label>Amplify</label>
+            <input type="button" value="-" onclick="updateAmplify(-1)" />
+            <span id="amplifyValue">0</span>
+            <input type="button" value="+" onclick="updateAmplify(1)" />
+        </div>
+        <div>
+            <label>Coopertition</label>
+            <input type="checkbox" id="try" />
+            <label>try</label>
+            <input type="checkbox" id="sucess" value="sucess" />
+            <label>sucess</label>
+        </div>
+        <div>
+            <script>
+                let spotlight = 0;
+                function spotlightAmplify(num) {
+                    spotlight += num;
+                    if (spotlight < 0) {
+                        spotlight = 0;
+                    }
+                    if (spotlight > 3) {
+                        spotlight = 3;
+                    }
+                    document.getElementById("spotlightValue").textContent = spotlight;
+                }
+            </script>
+            <label>Spotlight</label>
+            <input type="button" value="-" onclick="spotlightAmplify(-1)" />
+            <span id="spotlightValue">0</span>
+            <input type="button" value="+" onclick="spotlightAmplify(1)" />
+        </div>
+        <div>
+            <table style="margin: auto;">
+                <tr id="team-number" style="background-color: hsl(180, 100%, 24%);">
+                    <th style="background-color: hsl(180, 100%, 24%);">Team number</th>
+                    <th><input type="number" style="width: 50px;" id="teamnumber1" /></th>
+                    <th><input type="number" style="width: 50px;" id="teamnumber2" /></th>
+                    <th><input type="number" style="width: 50px;" id="teamnumber3" /></th>
+                </tr>
+                <tr id="offensive">
+                    <th style="background-color: hsl(180, 100%, 24%);">Offensive</th>
+                    <th><input type="range" min="1" max="5" step="1" id="offensive-1"/></th>
+                    <th><input type="range" min="1" max="5" step="1" id="offensive-2"/></th>
+                    <th><input type="range" min="1" max="5" step="1" id="offensive-3"/></th>
+                </tr>
+                <tr id="defence">
+                    <th style="background-color: hsl(180, 100%, 24%);">Defence</th>
+                    <th><input type="range" min="1" max="5" step="1" id="defence-1"/></th>
+                    <th><input type="range" min="1" max="5" step="1" id="defence-2"/></th>
+                    <th><input type="range" min="1" max="5" step="1" id="defence-3"/></th>
+                </tr>
+                <tr id="mobility">
+                    <th style="background-color: hsl(180, 100%, 24%);">Mobility(Robot)</th>
+                    <th><input type="range" min="1" max="5" step="1" id="mobility-1"/></th>
+                    <th><input type="range" min="1" max="5" step="1" id="mobility-2"/></th>
+                    <th><input type="range" min="1" max="5" step="1" id="mobility-3"/></th>
+                </tr>
+                <tr id="driver-awarness">
+                    <th style="background-color: hsl(180, 100%, 24%);">Driver awareness</th>
+                    <th><input type="range" min="1" max="5" step="1" id="driver-awarness-1"/></th>
+                    <th><input type="range" min="1" max="5" step="1" id="driver-awarness-2"/></th>
+                    <th><input type="range" min="1" max="5" step="1" id="driver-awarness-3"/></th>
+                </tr>
+                <tr id="human-player">
+                    <th style="background-color: hsl(180, 100%, 24%);">Human player</th>
+                    <th><input type="range" min="1" max="5" step="1" id="human-player-1"/></th>
+                    <th><input type="range" min="1" max="5" step="1" id="human-player-2"/></th>
+                    <th><input type="range" min="1" max="5" step="1" id="human-player-3"/></th>
+                </tr>
+                <tr id="tacit-agreement">
+                    <th style="background-color: hsl(180, 100%, 24%);">Cooperative degree</th>
+                    <th><input type="range" min="1" max="5" step="1" id="tacit-agreement-1"/></th>
+                    <th><input type="range" min="1" max="5" step="1" id="tacit-agreement-2"/></th>
+                    <th><input type="range" min="1" max="5" step="1" id="tacit-agreement-3"/></th>
+                </tr>
+            </table>
+        </div>
+        <div>
+            <input type="button" value="next" onclick="next()"/>
+            <script>
+                //document.getElementById("qrcode").innerHTML = test;
+
+                function next() {
+                    var qrcodeValue={
+                        "matchInfo":{
+                            "match":document.getElementById("match").value,
+                            "scouter":document.getElementById("scouter").value,
+                            "amplify":document.getElementById("amplifyValue").value,
+                            "Coopertition":{
+                                "try":document.getElementById("try").checked,
+                                "sucess":document.getElementById("sucess").checked
+                                },
+                            "spotlight":document.getElementById("spotlightValue").value
+                        },
+                        "teamInfo":{}
+                    };
+                    qrcodeValue["teamInfo"][document.getElementById("teamnumber1").value]={
+                        "offensive":document.getElementById("offensive-1").value,
+                        "defence":document.getElementById("defence-1").value,
+                        "mobility":document.getElementById("mobility-1").value,
+                        "driver-awarness":document.getElementById("driver-awarness-1").value,
+                        "human-player":document.getElementById("human-player-1").value,
+                        "tacit-agreement":document.getElementById("tacit-agreement-1").value
+                    }
+                    qrcodeValue["teamInfo"][document.getElementById("teamnumber2").value]={
+                        "offensive":document.getElementById("offensive-2").value,
+                        "defence":document.getElementById("defence-2").value,
+                        "mobility":document.getElementById("mobility-2").value,
+                        "driver-awarness":document.getElementById("driver-awarness-2").value,
+                        "human-player":document.getElementById("human-player-2").value,
+                        "tacit-agreement":document.getElementById("tacit-agreement-2").value
+                    }
+                    qrcodeValue["teamInfo"][document.getElementById("teamnumber3").value]={
+                        "offensive":document.getElementById("offensive-3").value,
+                        "defence":document.getElementById("defence-3").value,
+                        "mobility":document.getElementById("mobility-3").value,
+                        "driver-awarness":document.getElementById("driver-awarness-3").value,
+                        "human-player":document.getElementById("human-player-3").value,
+                        "tacit-agreement":document.getElementById("tacit-agreement-3").value
+                    }
+                    data=JSON.stringify(qrcodeValue);
+                    console.log(data);
+                    
+                }
+            </script>
+        </div>
+        <div id="qrcode"></div>
+    </body>
+</html>
