@@ -113,11 +113,9 @@
             </table>
         </div>
         <div>
-            <input type="button" value="next" onclick="next()"/>
+            <script src="../superScout/qrious/dist/qrious.min.js"></script>
             <script>
-                //document.getElementById("qrcode").innerHTML = test;
-
-                function next() {
+                function generate(){
                     var qrcodeValue={
                         "matchInfo":{
                             "match":document.getElementById("match").value,
@@ -156,11 +154,19 @@
                         "tacit-agreement":document.getElementById("tacit-agreement-3").value
                     }
                     data=JSON.stringify(qrcodeValue);
-                    console.log(data);
                     
+                    var canvas = document.getElementById('qrcode');
+                    new QRious({
+                        element: canvas,
+                        value: data,
+                        size: 200
+                        });
                 }
             </script>
+            <input type="button" value="done" onclick="generate()"/>
         </div>
-        <div id="qrcode"></div>
+        <div>
+            <canvas id="qrcode"></canvas>
+        </div>
     </body>
 </html>
