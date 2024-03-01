@@ -94,7 +94,8 @@
                             "success":document.getElementById("spotlightSucceed").textContent
                             }
                         },
-                    "teamInfo":{}
+                    "teamInfo":{},
+                    "remark":document.getElementById("remark").value
                     };
                 qrcodeValue["teamInfo"][document.getElementById("teamnumber1").value]={
                     "offensive":document.getElementById("offensive-1").value,
@@ -223,6 +224,9 @@
                     <td><input type="range" min="1" max="5" step="1" id="tacit-agreement-3"/></td>
                 </tr>
             </table>
+        </div>
+        <div>
+            <input type="text" size="500" id="remark">
         </div>
         <div>
             <input type="button" value="done" onclick="generate()"/>
