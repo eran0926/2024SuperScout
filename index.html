@@ -84,7 +84,7 @@
                             "match":document.getElementById("match").value
                             },
                         "Alliance":document.getElementById("alliance").value,
-                        "amplify":document.getElementById("amplifyValue").value,
+                        "amplify":document.getElementById("amplifyValue").textContent,
                         "Coopertition":{
                             "try":document.getElementById("try").checked,
                             "success":document.getElementById("success").checked
@@ -227,7 +227,7 @@
         </div>
         <div>
             <label>remark</label>
-            <input type="text" size="50" id="remark">
+            <input type="text" size="500" id="remark">
         </div>
         <div>
             <input type="button" value="done" onclick="generate()"/>
