@@ -36,19 +36,6 @@ d.RS_BLOCK_TABLE=[[1,26,19],[1,26,16],[1,26,13],[1,26,9],[1,44,34],[1,44,28],[1,
                     }
                 document.getElementById("amplifyValue").textContent = amplify;
                 }
-            function download(){
-                if (canDownload!=true){
-                    alert("you should click the done button")
-                    return 0;
-                    }
-                var canvas = document.getElementById("qrcode");
-                var qrcodeURL =canvas.toDataURL();
-                var downloadLink =document.createElement("a");
-                downloadLink.href=qrcodeURL;
-                var fileName=document.getElementById("matchType").value+document.getElementById("match").value+document.getElementById("alliance").value;
-                downloadLink.download=fileName;
-                downloadLink.click();
-                }
             let spotlightTry = 0;
             let spotlightSuccess=0;
             function spotlightTriedCount(num) {
@@ -249,9 +236,6 @@ d.RS_BLOCK_TABLE=[[1,26,19],[1,26,16],[1,26,13],[1,26,9],[1,44,34],[1,44,28],[1,
             <input type="button" value="done" onclick="generate()"/>
         </div>
         <div id="QRcode">
-        </div>
-        <div>
-            <input type="button" value="download" onclick="download()"/>
         </div>
     </body>
 </html>
