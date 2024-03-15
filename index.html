@@ -63,68 +63,45 @@ d.RS_BLOCK_TABLE=[[1,26,19],[1,26,16],[1,26,13],[1,26,9],[1,44,34],[1,44,28],[1,
                 if (document.getElementById("scouter").value==''){
                     alert("what's your name!!!")
                     return 0;
-                    }
-                var qrcodeValue={
-                    "matchInfo":{
-                        "scouter":document.getElementById("scouter").value,
-                        "match":{
-                            "matchType":document.getElementById("matchType").value,
-                            "match":document.getElementById("match").value
-                            },
-                        "Alliance":document.getElementById("alliance").value,
-                        "amplify":document.getElementById("amplifyValue").textContent,
-                        "Coopertition":{
-                            "try":document.getElementById("try").checked,
-                            "success":document.getElementById("success").checked
-                            },
-                        "spotlight":{
-                            "try":document.getElementById("spotlighttried").textContent,
-                            "success":document.getElementById("spotlightSucceed").textContent
-                            }
-                        },
-                    "teamInfo":{},
-                    "remark":document.getElementById("remark").value
-                    };
-                qrcodeValue["teamInfo"][document.getElementById("teamnumber1").value]={
-                    "offensive":document.getElementById("offensive-1").value,
-                    "defence":document.getElementById("defence-1").value,
-                    "mobility":document.getElementById("mobility-1").value,
-                    "driver-awarness":document.getElementById("driver-awarness-1").value,
-                    "human-player":document.getElementById("human-player-1").value,
-                    "tacit-agreement":document.getElementById("tacit-agreement-1").value
                 }
-                qrcodeValue["teamInfo"][document.getElementById("teamnumber2").value]={
-                    "offensive":document.getElementById("offensive-2").value,
-                    "defence":document.getElementById("defence-2").value,
-                    "mobility":document.getElementById("mobility-2").value,
-                    "driver-awarness":document.getElementById("driver-awarness-2").value,
-                    "human-player":document.getElementById("human-player-2").value,
-                    "tacit-agreement":document.getElementById("tacit-agreement-2").value
+                qrcodeValue=[];
+                qrcodeValue.push(document.getElementById("scouter").value);
+                qrcodeValue.push(document.getElementById("matchType").value);
+                qrcodeValue.push(document.getElementById("match").value);
+                qrcodeValue.push(document.getElementById("alliance").value);
+                qrcodeValue.push(document.getElementById("amplifyValue").textContent);
+                qrcodeValue.push(document.getElementById("try").checked);
+                qrcodeValue.push(document.getElementById("success").checked);
+                qrcodeValue.push(document.getElementById("spotlighttried").textContent);
+                qrcodeValue.push(document.getElementById("spotlightSucceed").textContent);
+
+                for (var count=1;count<=3;count++){
+                    qrcodeValue.push(document.getElementById("teamnumber"+count).value);
+                    qrcodeValue.push(document.getElementById("offensive-"+count).value);
+                    qrcodeValue.push(document.getElementById("defence-"+count).value);
+                    qrcodeValue.push(document.getElementById("mobility-"+count).value);
+                    qrcodeValue.push(document.getElementById("driver-awarness-"+count).value);
+                    qrcodeValue.push(document.getElementById("human-player-"+count).value);
+                    qrcodeValue.push(document.getElementById("tacit-agreement-"+count).value);
                 }
-                qrcodeValue["teamInfo"][document.getElementById("teamnumber3").value]={
-                    "offensive":document.getElementById("offensive-3").value,
-                    "defence":document.getElementById("defence-3").value,
-                    "mobility":document.getElementById("mobility-3").value,
-                    "driver-awarness":document.getElementById("driver-awarness-3").value,
-                    "human-player":document.getElementById("human-player-3").value,
-                    "tacit-agreement":document.getElementById("tacit-agreement-3").value
-                }
+                qrcodeValue.push(document.getElementById("remark").value);
+                data=qrcodeValue.toString();
+
                 if (canDownload==true){
                     qrcode.clear();
-                }
-                data=JSON.stringify(qrcodeValue);
+                    }
 
                 var options = {
                     text : data,
-                    cwidth: 256,
+                    width: 256,
                     height: 256,
                     colorDark : "#000000",
                     colorLight : "#ffffff",
-                    correctLevel : QRCode.CorrectLevel.M
+                    correctLevel : QRCode.CorrectLevel.L
                 };
                 
                 qrcode= new QRCode(document.getElementById("QRcode"), options);
-                //    
+                    
                 //var canvas = document.getElementById('qrcode');
                 //new QRious({
                 //    element: canvas,
@@ -133,7 +110,6 @@ d.RS_BLOCK_TABLE=[[1,26,19],[1,26,16],[1,26,13],[1,26,9],[1,44,34],[1,44,28],[1,
                 //    });
                 canDownload=true;
                 //console.log(data);
-                console.table(qrcodeValue["teamInfo"]);
             }
         </script>
     </head>
