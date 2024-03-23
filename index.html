@@ -85,20 +85,36 @@ d.RS_BLOCK_TABLE=[[1,26,19],[1,26,16],[1,26,13],[1,26,9],[1,44,34],[1,44,28],[1,
                     qrcodeValue.push(document.getElementById("tacit-agreement-"+count).value);
                 }
                 qrcodeValue.push(document.getElementById("remark").value);
-                data=qrcodeValue.toString();
+                //data=qrcodeValue.toString();
+                data=''
+                for(var i=0;i<qrcodeValue.length;i++){
+                    data+=qrcodeValue[i]+"\t"
+                }
 
+                console.log(data);
                 if (canDownload==true){
                     qrcode.clear();
                     }
 
-                var options = {
-                    text : data,
-                    width: 256,
-                    height: 256,
-                    colorDark : "#000000",
-                    colorLight : "#ffffff",
-                    correctLevel : QRCode.CorrectLevel.M
-                };
+                if(document.getElementById("remark".value==""))
+                    var options = {
+                        text : data,
+                        width: 256,
+                        height: 256,
+                        colorDark : "#000000",
+                        colorLight : "#ffffff",
+                        correctLevel : QRCode.CorrectLevel.M
+                    };
+                else{
+                    var options = {
+                        text : data,
+                        width: 256,
+                        height: 256,
+                        colorDark : "#000000",
+                        colorLight : "#ffffff",
+                        correctLevel : QRCode.CorrectLevel.L
+                    }
+                }
                 
                 qrcode= new QRCode(document.getElementById("QRcode"), options);
                     
@@ -204,7 +220,7 @@ d.RS_BLOCK_TABLE=[[1,26,19],[1,26,16],[1,26,13],[1,26,9],[1,44,34],[1,44,28],[1,
                 </tr>
             </table>
         </div>
-        <div>
+        <div width="100%" >
             <label>remark</label>
             <input type="text" size="50" id="remark">
         </div>
