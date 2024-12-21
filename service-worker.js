@@ -1,4 +1,4 @@
-const cacheName = "scoutPWA-v1";
+const cacheName = "superScout-v1";
 const contentToCache = ["/2024SuperScout/"]
 
 self.addEventListener("install", (e) => {
