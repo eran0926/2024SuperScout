@@ -1,0 +1,16 @@
+{
+  "name": "FRC 6998 2024 super scout app",
+  "short_name": "super scout",
+  "description": "FRC 6998 2024 super scout app fork from scouting pass",
+  "icons": [
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "/2024SuperScout/index.html",
+  "display": "fullscreen",
+  "theme_color": "#B12A34",
+  "background_color": "#B12A34"
+}
